@@ -54,12 +54,18 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 
     int numOfCorrect = 1;
 
+    //
+    Music music = new Music();
+
     public static void main(String[] args) {
         Main main = new Main();
+        Music music = new Music();
+
         main.createWindow();
         main.firstTimeRun();
         main.gameTimer();
         while(main.running) {
+            music.playSound();
             main.customUpdate();
         }
         main.lastRun();
@@ -128,7 +134,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         g.fillRect(b3x,b3y,b3w,b3h);
 
         g.setColor(Color.CYAN);
-        g.fillRect(b4x,b4y,b4w,b4h);
+        g.fillRect(b4x, b4y, b4w, b4h);
     }
 
     //Following Methods are required by implementation
