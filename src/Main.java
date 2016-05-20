@@ -4,9 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
 
-/**
- * Created by ma039102 on 4/28/2016.
- */
+
 public class Main extends JPanel implements MouseListener { // A basic Simon says game.
 
     //Positioning variables
@@ -49,10 +47,6 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     boolean b2 = false;
     boolean b3 = false;
     boolean b4 = false;
-    int ib1 = 0;
-    int ib2 = 1;
-    int ib3 = 2;
-    int ib4 = 3;
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -92,9 +86,6 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 //        }
         colorPicker();
         System.out.println(colorPicker());
-        if(colorPicker() == ) {
-
-        }
     }
 
     public void lastRun() {
