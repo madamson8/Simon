@@ -59,6 +59,9 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         main.createWindow();
         main.firstTimeRun();
         main.gameTimer();
+        while(main.running) {
+            main.customUpdate();
+        }
         main.lastRun();
     }
 
