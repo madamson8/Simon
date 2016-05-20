@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
@@ -48,14 +50,15 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     boolean b3 = false;
     boolean b4 = false;
 
+    Timer timer;
+
     int numOfCorrect = 1;
 
     public static void main(String[] args) {
         Main main = new Main();
         main.createWindow();
-        while(main.running) {
-            main.customUpdate();
-        }
+        main.firstTimeRun();
+        main.gameTimer();
         main.lastRun();
     }
 
@@ -86,6 +89,13 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 //        else if(mouseX > b4x && mouseX < b4x+b4w && mouseY > b4y && mouseY < b4y + b4h) {
 //            System.out.println("You clicked button four. ");
 //        }
+
+    }
+
+    public void firstTimeRun() {
+        for(int i = 0; i < 4; i++) {
+            colorPicker();
+        }
         //colorPicker();
         //System.out.println(colorPicker());
     }
@@ -99,6 +109,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 
     public int colorPicker() {
         int color = rand.nextInt(4);
+        System.out.println(color);
 
         return color;
     }
@@ -172,5 +183,14 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
             return true;
         }
         return false;
+    }
+    public void gameTimer(){
+        timer = new Timer(200, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                customUpdate();
+            }
+        });
+        timer.start();
     }
 }
