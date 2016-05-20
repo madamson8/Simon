@@ -84,8 +84,8 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 //        else if(mouseX > b4x && mouseX < b4x+b4w && mouseY > b4y && mouseY < b4y + b4h) {
 //            System.out.println("You clicked button four. ");
 //        }
-        colorPicker();
-        System.out.println(colorPicker());
+        //colorPicker();
+        //System.out.println(colorPicker());
     }
 
     public void lastRun() {
@@ -120,24 +120,28 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     public void mouseClicked(MouseEvent e) {
         mouseX = e.getX();
         mouseY = e.getY();
+        b1 = BoxChecker(mouseX, mouseY, b1x, b1y, b1w, b1h);
+        b2 = BoxChecker(mouseX, mouseY, b2x, b2y, b2w, b2h);
+        b3 = BoxChecker(mouseX, mouseY, b3x, b3y, b3w, b3h);
+        b4 = BoxChecker(mouseX, mouseY, b4x, b4y, b4w, b4h);
 //        System.out.println(mouseX);
 //        System.out.println(mouseY);
-        if(mouseX > b1x && mouseX < b1x+b1w && mouseY > b1y && mouseY < b1y + b1h) {
-//            System.out.println("You clicked button one. ");
-            b1 = true;
-        }
-        else if(mouseX > b2x && mouseX < b2x+b2w && mouseY > b2y && mouseY < b2y + b2h) {
-//            System.out.println("You clicked button two. ");
-            b2 = true;
-        }
-        else if(mouseX > b3x && mouseX < b3x+b3w && mouseY > b3y && mouseY < b3y + b3h) {
-//            System.out.println("You clicked button three. ");
-            b3 = true;
-        }
-        else if(mouseX > b4x && mouseX < b4x+b4w && mouseY > b4y && mouseY < b4y + b4h) {
-//            System.out.println("You clicked button four. ");
-            b4 = true;
-        }
+//        if(mouseX > b1x && mouseX < b1x+b1w && mouseY > b1y && mouseY < b1y + b1h) {
+////            System.out.println("You clicked button one. ");
+//            b1 = true;
+//        }
+//        else if(mouseX > b2x && mouseX < b2x+b2w && mouseY > b2y && mouseY < b2y + b2h) {
+////            System.out.println("You clicked button two. ");
+//            b2 = true;
+//        }
+//        else if(mouseX > b3x && mouseX < b3x+b3w && mouseY > b3y && mouseY < b3y + b3h) {
+////            System.out.println("You clicked button three. ");
+//            b3 = true;
+//        }
+//        else if(mouseX > b4x && mouseX < b4x+b4w && mouseY > b4y && mouseY < b4y + b4h) {
+////            System.out.println("You clicked button four. ");
+//            b4 = true;
+//        }
     }
 
     @Override
@@ -158,5 +162,13 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    public boolean BoxChecker(int x, int y, int BoxX, int BoxY, int BoxLen, int BoxHeight){
+        if((BoxX <= x && x <= (BoxX + BoxLen)) && (BoxY + 20 <= y && y <= (BoxY + BoxHeight) + 20)){
+            System.out.println("You Clicked me!");
+            return true;
+        }
+        return false;
     }
 }
