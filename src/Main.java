@@ -48,6 +48,8 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     boolean b3 = false;
     boolean b4 = false;
 
+    int numOfCorrect = 1;
+
     public static void main(String[] args) {
         Main main = new Main();
         main.createWindow();
