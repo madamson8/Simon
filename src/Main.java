@@ -51,6 +51,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     public static void main(String[] args) {
         Main main = new Main();
         main.createWindow();
+        main.firstTimeRun();
         while(main.running) {
             main.customUpdate();
         }
@@ -84,8 +85,13 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 //        else if(mouseX > b4x && mouseX < b4x+b4w && mouseY > b4y && mouseY < b4y + b4h) {
 //            System.out.println("You clicked button four. ");
 //        }
-        colorPicker();
-        System.out.println(colorPicker());
+
+    }
+
+    public void firstTimeRun() {
+        for(int i = 0; i < 4; i++) {
+            colorPicker();
+        }
     }
 
     public void lastRun() {
@@ -97,6 +103,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 
     public int colorPicker() {
         int color = rand.nextInt(4);
+        System.out.println(color);
 
         return color;
     }
