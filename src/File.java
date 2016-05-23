@@ -4,6 +4,6 @@
 @Deprecated
 public class File {
     public void createFile() {
-        
+
     }
 }

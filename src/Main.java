@@ -66,7 +66,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         main.gameTimer();
         while(main.running) {
 //            music.playMp3("C:\\Users\\ma039102\\Downloads\\9_mm_gunshot-mike-koenig-123.wav");
-            music.playWav();
+//            music.playWav();
             main.customUpdate();
         }
         main.lastRun();
@@ -167,7 +167,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         timer = new Timer(200, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                customUpdate();
+                //customUpdate();
             }
         });
         timer.start();
