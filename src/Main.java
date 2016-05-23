@@ -65,7 +65,8 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         main.firstTimeRun();
         main.gameTimer();
         while(main.running) {
-            music.playSound();
+//            music.playMp3("C:\\Users\\ma039102\\Downloads\\9_mm_gunshot-mike-koenig-123.wav");
+            music.playWav();
             main.customUpdate();
         }
         main.lastRun();
@@ -85,19 +86,6 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     }
 
     public void customUpdate() {
-//        int ignore = 0;
-//        if(mouseX > b1x && mouseX < b1x+b1w && mouseY > b1y && mouseY < b1y + b1h) {
-//            System.out.println("You clicked button one. ");
-//        }
-//        else if(mouseX > b2x && mouseX < b2x+b2w && mouseY > b2y && mouseY < b2y + b2h) {
-//            System.out.println("You clicked button two. ");
-//        }
-//        else if(mouseX > b3x && mouseX < b3x+b3w && mouseY > b3y && mouseY < b3y + b3h) {
-//            System.out.println("You clicked button three. ");
-//        }
-//        else if(mouseX > b4x && mouseX < b4x+b4w && mouseY > b4y && mouseY < b4y + b4h) {
-//            System.out.println("You clicked button four. ");
-//        }
 
     }
 
