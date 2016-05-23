@@ -60,10 +60,12 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     public static void main(String[] args) {
         Main main = new Main();
         Music music = new Music();
+        FileCreation fileCreation = new FileCreation();
 
         main.createWindow();
         main.firstTimeRun();
         main.gameTimer();
+        fileCreation.createFile("savefile.txt");
         while(main.running) {
 //            music.playMp3("C:\\Users\\ma039102\\Downloads\\9_mm_gunshot-mike-koenig-123.wav");
 //            music.playWav();
