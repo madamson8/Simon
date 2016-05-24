@@ -54,14 +54,17 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 
     int numOfCorrect = 1;
 
+    int[] algorithom = new int[900000];
+    int[] chosenElem = new int[900000];
+    //
+    //Music music = new Music();
+
     public static void main(String[] args) {
         Main main = new Main();
+        //Music music = new Music();
+
         main.createWindow();
-        main.firstTimeRun();
         main.gameTimer();
-        while(main.running) {
-            main.customUpdate();
-        }
         main.lastRun();
     }
 
@@ -79,28 +82,24 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     }
 
     public void customUpdate() {
-//        int ignore = 0;
-//        if(mouseX > b1x && mouseX < b1x+b1w && mouseY > b1y && mouseY < b1y + b1h) {
-//            System.out.println("You clicked button one. ");
-//        }
-//        else if(mouseX > b2x && mouseX < b2x+b2w && mouseY > b2y && mouseY < b2y + b2h) {
-//            System.out.println("You clicked button two. ");
-//        }
-//        else if(mouseX > b3x && mouseX < b3x+b3w && mouseY > b3y && mouseY < b3y + b3h) {
-//            System.out.println("You clicked button three. ");
-//        }
-//        else if(mouseX > b4x && mouseX < b4x+b4w && mouseY > b4y && mouseY < b4y + b4h) {
-//            System.out.println("You clicked button four. ");
-//        }
-
-    }
-
-    public void firstTimeRun() {
-        for(int i = 0; i < 4; i++) {
-            colorPicker();
+        int temp = 0;
+        int x = 0;
+        algorithom[x] = 1;
+        if(b1){
+            temp = 1;
         }
-        //colorPicker();
-        //System.out.println(colorPicker());
+        if(b2){
+            temp = 2;
+        }
+        if(b3){
+            temp = 3;
+        }
+        if(b4){
+            temp = 4;
+        }
+        if(algorithom[x] == temp){
+            System.out.println("nice ok");
+        }
     }
 
     public void lastRun() {
@@ -128,41 +127,25 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         g.fillRect(b3x,b3y,b3w,b3h);
 
         g.setColor(Color.CYAN);
-        g.fillRect(b4x,b4y,b4w,b4h);
+        g.fillRect(b4x, b4y, b4w, b4h);
     }
 
     //Following Methods are required by implementation
     @Override
     public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+//        System.out.println(e);
         mouseX = e.getX();
         mouseY = e.getY();
         b1 = BoxChecker(mouseX, mouseY, b1x, b1y, b1w, b1h);
         b2 = BoxChecker(mouseX, mouseY, b2x, b2y, b2w, b2h);
         b3 = BoxChecker(mouseX, mouseY, b3x, b3y, b3w, b3h);
         b4 = BoxChecker(mouseX, mouseY, b4x, b4y, b4w, b4h);
-//        System.out.println(mouseX);
-//        System.out.println(mouseY);
-//        if(mouseX > b1x && mouseX < b1x+b1w && mouseY > b1y && mouseY < b1y + b1h) {
-////            System.out.println("You clicked button one. ");
-//            b1 = true;
-//        }
-//        else if(mouseX > b2x && mouseX < b2x+b2w && mouseY > b2y && mouseY < b2y + b2h) {
-////            System.out.println("You clicked button two. ");
-//            b2 = true;
-//        }
-//        else if(mouseX > b3x && mouseX < b3x+b3w && mouseY > b3y && mouseY < b3y + b3h) {
-////            System.out.println("You clicked button three. ");
-//            b3 = true;
-//        }
-//        else if(mouseX > b4x && mouseX < b4x+b4w && mouseY > b4y && mouseY < b4y + b4h) {
-////            System.out.println("You clicked button four. ");
-//            b4 = true;
-//        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-//        System.out.println(e);
+        customUpdate();
     }
 
     @Override
@@ -191,7 +174,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         timer = new Timer(200, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                customUpdate();
+                //customUpdate(numOfCorrect);
             }
         });
         timer.start();
