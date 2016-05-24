@@ -62,6 +62,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     public static void main(String[] args) {
         Main main = new Main();
         Music music = new Music();
+        music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/40_smith_wesson_8x_gunshot-mike-koenig.wav");
         main.createWindow();
         main.gameTimer();
         main.lastRun();
