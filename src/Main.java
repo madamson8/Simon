@@ -94,9 +94,13 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         }
         if(b3){
             temp = 3;
+            music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/50_sniper_shot-Liam-2028603980.wav");
+
         }
         if(b4){
             temp = 4;
+            music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/Gun_loud-Soundmaster_-88363983.wav");
+
         }
         if(algorithom[x] == temp){
             System.out.println("nice ok");
