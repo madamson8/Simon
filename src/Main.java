@@ -61,8 +61,6 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 
     public static void main(String[] args) {
         Main main = new Main();
-        Music music = new Music();
-        music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/40_smith_wesson_8x_gunshot-mike-koenig.wav");
         main.createWindow();
         main.gameTimer();
         main.lastRun();
@@ -82,14 +80,17 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     }
 
     public void customUpdate() {
+        Music music = new Music();
         int temp = 0;
         int x = 0;
         algorithom[x] = 1;
         if(b1){
             temp = 1;
+            music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/Bomb-SoundBible.com-891110113.wav");
         }
         if(b2){
             temp = 2;
+            music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/Gun_Shot-Marvin-1140816320.wav");
         }
         if(b3){
             temp = 3;
