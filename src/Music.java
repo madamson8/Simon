@@ -1,45 +1,16 @@
-
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import java.io.File;
-
+import java.io.*;
+import sun.audio.*;
 @Deprecated
 public class Music {
+    public static void main(String[] args) throws Exception {
+                // open the sound file as a Java input stream
+                String gongFile = "C:/Users/hb015507/IdeaProjects/Simon/src/Resources/40_smith_wesson_8x_gunshot-mike-koenig.wav";
+                InputStream in = new FileInputStream(gongFile);
 
-    public static synchronized void playWav(final String url) {
-    new Thread(new Runnable() {
-            // The wrapper thread is unnecessary, unless it blocks on the
-            // Clip finishing; see comments.
-            public void run() {
-                try {
-                    Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            Main.class.getResourceAsStream("/path/to/sounds/" + url));
-                    clip.open(inputStream);
-                    clip.start();
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
-                }
-            }
-        }).start();
+                // create an audiostream from the inputstream
+                AudioStream audioStream = new AudioStream(in);
+
+                // play the audio clip with the audioplayer class
+                AudioPlayer.player.start(audioStream);
     }
-
-
-    public void playMp3(String filename) {
-        String strFilename = filename;
-        File soundFile;
-        try {
-            soundFile = new File("");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-//        try {
-//
-//        }
-    }
-
 }

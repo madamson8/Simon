@@ -61,8 +61,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 
     public static void main(String[] args) {
         Main main = new Main();
-        //Music music = new Music();
-
+        Music music = new Music();
         main.createWindow();
         main.gameTimer();
         main.lastRun();
