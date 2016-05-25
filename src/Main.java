@@ -4,10 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferStrategy;
 import java.util.Random;
 
 
-public class Main extends JPanel implements MouseListener { // A basic Simon says game.
+public class Main extends Canvas implements Runnable { // A basic Simon says game.
 
     //Positioning variables
     //Button 1
@@ -56,6 +57,10 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
 
     int[] algorithom = new int[900000];
     int[] chosenElem = new int[900000];
+
+    JFrame frame;
+    String title;
+    Thread thread;
     //
     //Music music = new Music();
 
@@ -69,14 +74,18 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     public void createWindow() {
         Main main = new Main();
 
-        JFrame frame = new JFrame("Simon");
+        frame = new JFrame("Simon");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setSize(frameWidth,frameHeight);
         frame.setLocationRelativeTo(null);
-        frame.addMouseListener(main);
+        //frame.addMouseListener(main);
         frame.add(main);
+    }
+
+    public void update(){
+
     }
 
     public void customUpdate() {
@@ -86,20 +95,20 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         algorithom[x] = 1;
         if(b1){
             temp = 1;
-            music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/Bomb-SoundBible.com-891110113.wav");
+            music.playMP3("src/Resources/Bomb-SoundBible.com-891110113.wav");
         }
         if(b2){
             temp = 2;
-            music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/Gun_Shot-Marvin-1140816320.wav");
+            music.playMP3("src/Resources/Gun_Shot-Marvin-1140816320.wav");
         }
         if(b3){
             temp = 3;
-            music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/50_sniper_shot-Liam-2028603980.wav");
+            music.playMP3("src/Resources/50_sniper_shot-Liam-2028603980.wav");
 
         }
         if(b4){
             temp = 4;
-            music.playMP3("C:/Users/hb015507/IdeaProjects/Simon/src/Resources/Gun_loud-Soundmaster_-88363983.wav");
+            music.playMP3("src/Resources/Gun_loud-Soundmaster_-88363983.wav");
 
         }
         if(algorithom[x] == temp){
@@ -121,7 +130,7 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         return color;
     }
 
-    public void paintComponent(Graphics g) {
+    public void DrawImage(Graphics g) {
         g.setColor(Color.GREEN);
         g.fillRect(b1x,b1y,b1w,b1h);
 
@@ -134,14 +143,74 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         g.setColor(Color.CYAN);
         g.fillRect(b4x, b4y, b4w, b4h);
     }
+    public synchronized void start(){
+        running = true;
+        thread = new Thread(this, "Display");
+        thread.start();
+    }
+
+    public synchronized void stop(){
+        running = false;
+        try {
+            thread.join();
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void run(){
+        long lastTime = System.nanoTime();
+        long timer = System.currentTimeMillis();
+        final double ns = 1000000000.0/60.0;
+        double delta = 0;
+        int frames = 0;
+        int updates = 0;
+        while(running){
+            long now = System.nanoTime();
+            delta += (now-lastTime) / ns;
+            lastTime = now;
+            while(delta >= 1){
+                update();
+                updates++;
+                delta--;
+            }
+            render();
+            frames++;
+
+            if(System.currentTimeMillis() - timer > 1000){
+                timer += 1000;
+                frame.setTitle(title + "  |  " + updates + " ups, " + frames + " fps");
+                updates = 0;
+                frames = 0;
+            }
+        }
+        stop();
+    }
+
+
+    public void render(){
+        BufferStrategy bufferStrat = getBufferStrategy();
+        if(bufferStrat == null){
+            createBufferStrategy(3);
+            return;
+        }
+
+        //DrawImage(Graphics);
+
+        Graphics g = bufferStrat.getDrawGraphics();
+        //g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        g.dispose();
+        bufferStrat.show();
+    }
 
     //Following Methods are required by implementation
-    @Override
+
     public void mouseClicked(MouseEvent e) {
 
     }
 
-    @Override
+
     public void mousePressed(MouseEvent e) {
 //        System.out.println(e);
         mouseX = e.getX();
@@ -153,17 +222,14 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
         customUpdate();
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
 
     }
 
-    @Override
     public void mouseEntered(MouseEvent e) {
 
     }
 
-    @Override
     public void mouseExited(MouseEvent e) {
 
     }
@@ -177,7 +243,6 @@ public class Main extends JPanel implements MouseListener { // A basic Simon say
     }
     public void gameTimer(){
         timer = new Timer(200, new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 //customUpdate(numOfCorrect);
             }
